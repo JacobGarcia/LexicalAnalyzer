@@ -45,7 +45,7 @@ the analyzer will ignore them.
 When the build is executed, the c program 
 file must be passed as an argument:
 NOTE: Consider for the next command 
-that the process file must be in the same 
+that the test file must be in the same 
 folder. If that were not the case, then 
 add the file address.
 -----------------------------------------

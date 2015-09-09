@@ -549,9 +549,9 @@ char *yytext;
 /*                                                                       */
 /*                                                                       */
 /* Error handling:                                                       */
-/*          When uknown tokens are found, the program indicates an error */
+/*          When unknown tokens are found, the program indicates an error */
 /*          on the line where the token is found and shows the actual    */
-/*          uknown token                                                 */
+/*          unknown token                                                 */
 /*                                                                       */
 /* Notes:                                                                */
 /*          The output is in a table-like format, with 2 columns: The    */
@@ -566,10 +566,10 @@ char *yytext;
 /*************************************************************************/
 /*************************************************************************/
 /*                                                                       */
-/*  (int)idToDel: This variable express the index that is used to        */
-/*                indicate that a number is an octal one (which is       */
-/*                always in the second position of the string). This is  */
-/*                used for the octal to decimal conversion               */
+/*  (int)idToDel: This variable expresses the index that is used to      */
+/*                indicate that a number is octal (which is always in    */
+/*                he second position of the string). This is used for    */
+/*                the octal to decimal conversion                        */
 /*                                                                       */
 /*  (int)numberLines: This is a simple counter of newlines. It is used   */
 /*                    whenever an error occurs, showing the user the     */
@@ -588,8 +588,8 @@ char *yytext;
 /*         from 1 to 9 followed by any number from 0 to 9                */
 /*                                                                       */
 /*  EXPONENTIAL: In this case, any floating point number followed by an  */
-/*               an e (or E), a positive or negative sign and finally,   */
-/*               an integer number indicating the power                  */
+/*               e (or E), a positive or negative sign and finally, an   */
+/*               integer number indicating the power                     */
 /*                                                                       */
 /*  HEX: An hexadecimal number                                           */
 /*                                                                       */
@@ -905,7 +905,7 @@ YY_RULE_SETUP
 case 3:
 YY_RULE_SETUP
 #line 139 "LexicalAnalyzer.l"
-{    /* This expression is used to differentiate floating point number from integer ones */
+{    /* This expression is used to differentiate floating point numbers from integer ones */
      		printf("|      FLOAT NUMBER       | %21s |\n", yytext);
             printf("---------------------------------------------------\n");
 }
@@ -923,7 +923,7 @@ case 5:
 YY_RULE_SETUP
 #line 150 "LexicalAnalyzer.l"
 {
-            /* Since strtol cannot recongnize a 'C|c' as an input, an array with the exact same values except for the 'C|c' is needed */
+            /* Since strtol cannot recognize a 'C|c' as an input, an array with the exact same values except for the 'C|c' is needed */
             char octal[strlen(yytext)]; /* The string that will store the original octal number */
             strcpy(octal, yytext);  /* The contents of yytext are copied to the new array */
             memmove(&yytext[idToDel], &yytext[idToDel + 1], strlen(yytext) - idToDel); /* The 'C|c' is removed from the original string, leaving a string that can be
@@ -996,13 +996,13 @@ case 14:
 /* rule 14 can match eol */
 YY_RULE_SETUP
 #line 198 "LexicalAnalyzer.l"
-numberLines++;  /* When a newline is found, add one the global 
+numberLines++;  /* When a newline is found, add 1 to the global 
                                 counter to track the line numbers */
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 201 "LexicalAnalyzer.l"
-{             /* When an uknown token is found, indicate an error */
+{             /* When an unknown token is found, indicate an error */
              printf("|         ERROR           | %11s (Line %2d) |\n", yytext, numberLines);
              printf("--------------------------------------------------\n"); 
 }        
